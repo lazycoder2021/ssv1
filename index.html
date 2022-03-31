@@ -1,0 +1,1202 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        .hide {
+            display: none;
+        }
+
+        .bars {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border: 1px solid white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            display: none;
+            z-index: 600;
+        }
+
+        .bar {
+            height: 0.4px;
+            margin-top: 3px;
+            padding-bottom: 2px;
+            width: 20px;
+            color: white;
+            border-bottom: 1px solid white;
+        }
+
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .buttons {
+            margin-top: 18px;
+        }
+
+        a {
+            //text-decoration:none;
+            color: white;
+        }
+
+        .textContent {
+            backdrop-filter: blur(6px) saturate(170%);
+            //padding: 80px 10px;
+            background-color: rgba(30, 144, 255, 0.50);
+            border-radius: 4px;
+            color: white;
+            text-transform: capitalize;
+            padding: 40px;
+            position: absolute;
+            top: 300px;
+            left: 100px;
+            text-align: center;
+            animation: content 8.4s forwards;
+            opacity: 0;
+        }
+
+            .textContent p {
+                margin-bottom: 10px;
+            }
+
+            .textContent span {
+                background: white;
+                color: dodgerblue;
+                padding: 6px 10px;
+                cursor: pointer;
+                margin-right: 5px;
+                transition: 0.3s;
+            }
+
+                .textContent span:hover {
+                    background-color: rgba(30, 144, 255, 0.50);
+                    color: white;
+                }
+
+        @keyframes content {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes change {
+            0% {
+                background-color: rgba(30, 144, 255, 0.0);
+            }
+
+            50% {
+                background-color: rgba(30, 144, 255, 0.25);
+            }
+
+            100% {
+                background-color: rgba(30, 144, 255, 0.65);
+            }
+        }
+
+
+
+        .pane {
+            width: 150vw;
+            border: 1px solid black;
+            height: 150vh;
+            animation: resize 3.4s forwards;
+            //animation-iteration-count:1;
+            //overflow:hidden;
+            z-index: -1;
+        }
+
+        .pane1 {
+            //border: 10px solid black;
+            height: auto;
+            width: 100%;
+            margin-bottom: 80px;
+        }
+
+        .about {
+            border: 1px solid black;
+            height: 120vh;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(30, 144, 255, 0.6);
+            color: white;
+        }
+
+            .about h2 {
+                margin-top: 100px;
+                margin-bottom: 20px;
+            }
+
+        .faqs {
+            background-color: rgba(30, 144, 255, 0.6);
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+            margin-top: -30px;
+            //color:white;
+        }
+
+            .faqs h2 {
+                margin-top: 30px;
+                margin-bottom: 20px;
+            }
+
+            .faqs .specialHeader {
+                padding-top: 30px;
+            }
+
+        .services {
+            background: url('truck-3.jpg');
+            background-position: center;
+            background-attachment: fixed;
+            border: 1px solid black;
+            height: 80vh;
+            width: 100%;
+            text-align: center;
+        }
+
+            .services h2 {
+                margin-top: 30px;
+                margin-bottom: 20px;
+                color: white;
+            }
+
+
+
+
+
+
+
+        .pane2, .pane4, .pane5 {
+            border: 1px solid black;
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+        }
+
+            .pane2 h2, .pane3 h2, .pane4 h2, .pane5 h2 {
+                margin-top: 100px;
+            }
+
+        .contact {
+            border: 1px solid black;
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+            background-attachment: fixed;
+            background-image: url('telephone-2.jpg');
+            background-position: center center;
+            object-fit: cover;
+            position: relative;
+        }
+
+            .contact:before {
+                content: '';
+                top: 0px;
+                left: 0px;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                z-index: -1;
+                background-color: rgba(105, 105, 105, 0.5);
+            }
+
+            .contact .contactHeader {
+                margin-top: 100px;
+                color: white;
+                z-index: 2;
+                margin-bottom: 30px;
+            }
+
+        .contactBody {
+            margin-top: 0px;
+            height: 80%;
+            //border:10px solid white;
+            width: 80%;
+            margin: 0px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 400;
+        }
+
+        .contactAddress, .contactMap {
+            width: 40%;
+            border: 1px solid white;
+            height: 80%;
+        }
+
+        .contactAddress {
+            background-color: rgba(30, 144, 255, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contactMap {
+        }
+
+
+
+
+
+        .cards {
+            display: flex;
+            border: 10px solid white;
+            justify-content: flex-end;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .card {
+            margin-top: -130px;
+            border: 1px solid black;
+            width: 400px;
+            height: 150px;
+            backdrop-filter: blur(6px) saturate(170%);
+            padding: 10px;
+            background-color: rgba(30, 144, 255, 0.00);
+            border-radius: 12px;
+            color: white;
+            text-transform: capitalize;
+            animation: change 8.4s forwards;
+        }
+
+        video {
+            min-width: 100%;
+            min-height: 100%;
+            //background-position:center;
+        }
+
+        .nav {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            color: white;
+            //border: 1px solid white;
+            height: 70px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            text-transform: uppercase;
+            //backdrop-filter: blur(6px) saturate(170%);
+            background-color: rgba(30, 144, 255, 0.5);
+            animation: content 8.4s forwards;
+            opacity: 0;
+            position: fixed;
+            z-index: 800;
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+            .nav-items p {
+                margin-left: 15px;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
+                .nav-items p a {
+                    text-decoration: none;
+                    color: white;
+                    letter-spacing: -0.5px;
+                }
+
+        @keyframes resize {
+            0% {
+                height: 150vh;
+                width: 150vw;
+            }
+
+
+
+            100% {
+                height: 100vh;
+                width: 100vw;
+            }
+        }
+
+        /* FORM STYLING */
+
+        .container {
+            margin-top: 0px;
+            height: 130vh;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .vContainer {
+            min-width: 100%;
+            min-height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container::before {
+            content: '';
+            top: 0;
+            left: 0;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(30,144, 255, 0.5);
+            //background-color: rgba(105, 105, 105, 0.7);
+            z-index: 1;
+            //Change as per your requirement
+        }
+
+        .request-form {
+            z-index: 2;
+            position: absolute;
+            top: 30px;
+            left: 0px;
+            //border: 1px solid white;
+            width: 100%;
+            margin: 0px auto;
+            color: white;
+            height: 80vh;
+        }
+
+        .form-text {
+            width: 800px;
+            text-align: center;
+            margin: 30px auto;
+        }
+
+        .forum {
+            //border: 1px solid red;
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .form-control input {
+            background: transparent;
+            color: white;
+            outline: none;
+            border: 1px solid white;
+            width: 100%;
+            padding: 3px;
+            margin-top: 5px;
+        }
+
+        .form-control label {
+            width: 30%;
+        }
+
+        .forum textarea {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .forum .form-control {
+            //border:1px solid white;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+            .forum .form-control textarea {
+                width: 100%;
+                outline: none;
+            }
+
+        .btn {
+            padding: 5px 10px;
+            transition: 0.3s;
+            outline: none;
+            width: 300px;
+            text-transform: uppercase;
+        }
+
+            .btn:hover {
+                background-color: rgba(30,144, 255, 0.5);
+                color: white;
+                outline: none;
+            }
+
+
+        .frieght_options {
+            margin-top: 5px;
+            width: 400px;
+            margin-right: 15px;
+            padding: 3px;
+        }
+
+
+        .options {
+            outline: none;
+        }
+
+            .options:focus {
+                outline: none;
+            }
+
+
+
+
+        /* FORM STYLING ENDS HERE*/
+
+        /* SERVICES SECTION */
+
+        .all_services {
+            //border: 1px solid red;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-top: 100px;
+        }
+
+        .single_service {
+            //border: 1px solid black;
+            width: 30%;
+            height: 300px;
+            color: white;
+            //background-color: #1e90ff;
+            background-color: rgba(30, 144, 255, 0.60);
+            transition: 0.4s;
+            opacity: 0.8;
+            border-radius: 4px;
+        }
+
+            .single_service:hover {
+                transform: translateY(-20px);
+            }
+
+
+            .single_service .service_icon {
+                margin-top: 25px;
+            }
+
+            .single_service .service-desc {
+                //border:1px solid black;
+                width: 400px;
+                margin: 0px auto;
+            }
+
+                .single_service .service-desc h2 {
+                    margin-bottom: 5px;
+                }
+
+        /* FAQS SECTION*/
+
+        .faq {
+            width: 80%;
+            height: 70px;
+            border: 1px solid black;
+            margin: 0px auto;
+            position: relative;
+        }
+
+            .faq h2 {
+                font-weight: 100;
+                font-size: 22px;
+            }
+
+        .faq-answer {
+            height: 140px;
+            //border:1px solid red;
+            width: 100%;
+            z-index: 200;
+            background-color: black;
+            color: white;
+        }
+
+            .faq-answer p {
+            }
+
+        .faq-icon {
+            position: absolute;
+            right: 10px;
+            top: 25px;
+            cursor: pointer;
+        }
+
+            .faq-icon:hover {
+                animation: rotate 0.3s forwards;
+            }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .footer {
+            height: 60px;
+            width: 100%;
+            background-color: rgba(30, 144, 255, 0.8);
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .intro {
+            //border:1px solid black;
+            width: 1000px;
+            margin: 0px auto;
+            text-align: center;
+            letter-spacing: 0.8px;
+            line-height: 25px;
+            font-size: 18px;
+            height: 30vh;
+        }
+
+        .mission_vision_founders {
+            width: 1200px;
+            margin: 10px auto;
+            //border:1px solid red;
+            height: 55vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .mission_vision {
+            //border:1px solid blue;
+            width: 50%;
+            height: 100%;
+        }
+
+            .mission_vision h3 {
+                margin: 10px auto;
+                text-align: left;
+                font-weight: 100;
+            }
+
+            .mission_vision p {
+                margin: 10px auto;
+                text-align: left;
+                border-radius: 4px;
+            }
+
+        .mission, .vision {
+            //border:1px solid white;
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        .founders {
+            //border: 1px solid blue;
+            width: 50%;
+            height: 100%;
+        }
+
+        .founder {
+            //border: 1px solid white;
+            text-align: left;
+            margin-top: 30px;
+            margin-left: 30px;
+            display: flex;
+            height: 40%;
+        }
+
+            .founder h3 {
+                font-weight: 100;
+            }
+
+        .founderImage {
+            width: 30%;
+            border-radius: 15px;
+        }
+
+            .founderImage img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+
+        .founderDetails {
+            width: 70%;
+            margin-left: 10px;
+        }
+
+
+
+
+        @media only screen and (max-width:480px) {
+
+
+
+
+            .pane1 {
+                display: none;
+            }
+
+
+            .cards {
+                display: none;
+            }
+
+            body {
+                //background-color:red;
+            }
+
+
+
+            .nav {
+                display: none;
+            }
+
+
+            .pane {
+                width: 125vw;
+                border: 1px solid black;
+                height: 125vh;
+                animation: resize 3.4s forwards;
+                //animation-iteration-count:1;
+                overflow: hidden;
+                z-index: -1;
+            }
+
+            video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                background-position: center center;
+            }
+
+            @keyframes resize {
+                0% {
+                    height: 125vh;
+                    width: 125vw;
+                }
+
+
+
+                100% {
+                    height: 480px;
+                    width: 480px;
+                }
+            }
+
+
+
+
+
+
+            .bars {
+                display: block;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                border: 1px solid white;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .bar {
+                height: 0.4px;
+                margin-top: 3px;
+                padding-bottom: 2px;
+                width: 20px;
+                color: white;
+                border-bottom: 1px solid white;
+            }
+
+
+            .sidebar {
+                width: 480px;
+                height: 1500vh;
+                background-color: dodgerblue;
+                color: white;
+                z-index: 800;
+            }
+
+            .sidebar-items {
+                //border:1px solid white;
+                position: absolute;
+                top: 100px;
+                left: 100px;
+                width: 300px;
+                height: 300px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+                .sidebar-items p {
+                    margin-bottom: 30px;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    font-size: 18px;
+                }
+
+                .sidebar-items p a{
+                    text-decoration:none;
+                }
+
+            .about {
+                width: 480px;
+                //margin-bottom: 800px; /* for testing purpose, should be removed!!!! */
+                height: 1200px;
+            }
+
+                .about .intro {
+                    width: 480px;
+                }
+
+            .intro p {
+                font-size: 16px;
+            }
+
+            .mission_vision_founders {
+                width: 480px;
+                flex-direction: column;
+                align-items: flex-start;
+                //border:10px solid red;
+                height: auto;
+            }
+
+            .mission_vision {
+                width: 100%;
+            }
+
+            .founders {
+                width: 100%;
+            }
+
+            .services {
+                margin-top: 0px; /* for testing purpose, should be removed!!!! */
+                width: 480px;
+                //margin-bottom: 500px;
+                height: 1250px; /* for testing purpose, should be removed!!!! */
+                background-size: 100% 100%;
+                object-fit: contain;
+            }
+
+            .all_services {
+                flex-wrap: wrap;
+                height: auto;
+            }
+
+            .single_service {
+                width: 80%;
+                margin: 10px auto;
+            }
+
+            .container {
+                width: 480px;
+            }
+
+                .container .form-text {
+                    width: 480px;
+                }
+
+                    .container .form-text h2 {
+                        font-size: 20px;
+                    }
+
+                .container .forum {
+                    width: 80%;
+                }
+
+                .container .form-control .frieght_options {
+                    width: 100%;
+                }
+
+                .container .form-control .btn {
+                    width: 100%;
+                }
+
+            .faqs {
+                width: 480px;
+            }
+
+            .faq h2 {
+                font-size: 16px;
+            }
+
+            .faq-answer p {
+                line-height: 20px;
+            }
+
+            .contact {
+                width: 480px;
+                background-size: cover;
+                background-position: center center;
+                object-fit: cover;
+            }
+
+            .contactBody {
+                width: 100%;
+                flex-wrap: wrap;
+                //flex-direction:column;
+            }
+
+            .contactAddress, .contactMap {
+                width: 100%;
+            }
+
+            .footer {
+                margin-top: 360px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pane">
+        <div class="bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div class="sidebar hide">
+            <div class="sidebar-items">
+                <p><a href="#aa">About</a></p>
+                <p><a href="#s">Services</a></p>
+                <p><a href="#b">Book Freight</a></p>
+                <p><a href="#ff">FAQS</a></p>
+                <p><a href="#c">Contact</a></p>
+            </div>
+        </div>
+        <video src="truck.mp4" autoplay loop muted>
+        </video>
+        <div class="nav">
+            <div class="nav-items">
+                <p><a href="#a">About</a></p>
+                <p><a href="#s">Services</a></p>
+                <p><a href="#b">Book Frieght</a></p>
+                <p><a href="#f">FAQs</a></p>
+                <p><a href="#c">Contact</a></p>
+            </div>
+        </div>
+
+        <div class="textContent">
+            <h2>SSV Transport</h2>
+            <p>Cutting Edge Transport & Logistics Company</p>
+            <div class="buttons">
+                <span>Book Now</span>
+                <span>Call Us</span>
+            </div>
+        </div>
+    </div>
+    <div class="pane1">
+        <div class="cards">
+            <div class="card">
+                <h2>Truck Frieght</h2>
+                <p>SSV has a fleet of trucks that will serve your needs well. Containers, trucks, mini trucks, you name it, we have it. </p><a href="#">Learn More</a>
+            </div>
+            <div class="card">
+                <h2>Air Frieght</h2>
+                <p>SSV has a fleet of trucks that will serve your needs well. Containers, trucks, mini trucks, you name it, we have it. </p><a href="#">Learn More</a>
+            </div>
+            <div class="card">
+                <h2>Sea Frieght</h2>
+                <p>SSV has a fleet of trucks that will serve your needs well. Containers, trucks, mini trucks, you name it, we have it. </p><a href="#">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="about">
+        <h2>About</h2>
+        <div class="intro" id="a">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas quis ipsum suspendisse ultrices gravida dictum. Suspendisse in est ante in. Interdum velit laoreet id donec ultrices. <span id="aa">Enim</span> sit amet venenatis urna. Tellus orci ac auctor augue mauris. Iaculis urna id volutpat lacus laoreet non curabitur gravida. Enim sit amet venenatis urna. Tellus orci ac auctor augue mauris. </p>
+        </div>
+        <div class="mission_vision_founders">
+            <div class="mission_vision" data-aos="fade-right" data-aos-duration="600">
+                <div class="mission">
+                    <h3>Our Mission</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                </div>
+                <div class="vision">
+                    <h3>Our Vision</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                </div>
+            </div>
+            <div class="founders" data-aos="fade-left" data-aos-duration="600">
+                <div class="founder">
+                    <div class="founderImage">
+                        <img src="founder1.jpg" />
+                    </div>
+                    <div class="founderDetails">
+                        <div class="founderName">
+                            <h3>Founder Name</h3>
+                            <span>Designation</span>
+                        </div>
+                        <div class="founderDesc">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="founder">
+                    <div class="founderImage">
+                        <img src="founder2.jpg" />
+                    </div>
+                    <div class="founderDetails">
+                        <div class="founderName">
+                            <h3>Founder Name</h3>
+                            <span>Designation</span>
+                        </div>
+                        <div class="founderDesc">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="services" id="s"><h2>Our Freight Service</h2>
+        <div class="all_services">
+            <div class="single_service" data-aos="fade-up" data-aos-duration="1000">
+                <div class="service_icon">
+                    <i class="fa fa-truck" style="font-size:48px;"></i>
+                </div>
+                <div class="service-desc">
+                    <h2>By Land</h2>
+                    <p>The premium quality transport we offer ensure customer shipments reach their destination on time. And we take all precautions – like providing a temperature-controlled environment, safe distancing etc., – needed to keep our shipments in perfect condition. </p>
+                </div>
+            </div>
+            <div class="single_service" data-aos="fade-up" data-aos-duration="2000">
+                <div class="service_icon">
+                    <i class="fa fa-plane" style="font-size:48px;"></i>
+                </div>
+                <div class="service-desc">
+                    <h2>By Air</h2>
+                    <p>We work with all major airlines across India to ensure quick transport of our customer consignments.  Each and every consignment is followed up by our air freight professionals and our customers are provided with real time status reports. </p>
+                </div>
+            </div>
+            <div class="single_service" data-aos="fade-up" data-aos-duration="3000">
+                <div class="service_icon">
+                    <i class="fa fa-ship" style="font-size:48px;"></i>
+                </div>
+                <div class="service-desc">
+                    <h2>By Sea</h2>
+                    <p>Port to port (including port to door) movement of customer cargo is possible with our sea freight service. From handling heavy paperwork to providing professionals to load cargo onto shipments (stevedoring) to storing cargo until it leaves the shore, we take care of it all. </p>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+    
+        
+        <div class="container">
+            <video src="truck-1.mp4" class="vContainer" autoplay loop muted>
+            </video>
+
+            <div class="request-form">
+                <div class="form-text" id="b">
+                    <h2>Transport Your Cargo Using Our Freight Service</h2>
+                </div>
+                <form class="forum">
+                    <div class="form-control">
+                        <label for="name">Name</label>
+                        <input type="text" class="name" />
+                    </div>
+                    <div class="form-control">
+                        <label for="name">Phone</label>
+                        <input type="text" class="name" />
+                    </div>
+                    <div class="form-control">
+                        <label for="name">Email</label>
+                        <input type="text" class="name" />
+                    </div>
+                    <div class="form-control">
+                        <label for="options">Frieght Transport Options</label>
+                        <select class="frieght_options">
+                            <option value="truck" class="options">Truck</option>
+                            <option value="airplane" class="options">Airplane</option>
+                            <option value="ship" class="options">Ship</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="origin">Origin</label>
+                        <input type="text" class="orgin" />
+                    </div>
+                    <div class="form-control">
+                        <label for="dest">Destination</label>
+                        <input type="text" class="dest" />
+                    </div>
+                    <div class="form-control">
+                        <label for="weight">Freight or Cargo Weight (IN KGS)</label>
+                        <input type="text" class="weight" />
+                    </div>
+
+                    <div class="form-control">
+                        <label for="info">Additional info, if any</label><br />
+                        <textarea class="info" rows="8" cols="20"></textarea>
+                    </div>
+
+                    <div class="form-control">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    
+    
+        
+        <div class="faqs" id="f">
+            <h2 class="specialHeader">FAQS</h2>
+            <div class="faq" data-aos="fade-right" data-aos-duration="400">
+                <h2>Do you accept cards?</h2>
+                
+                <div class="faq-icon">
+                    <i class="fa fa-plus" style="font-size:32px"></i>
+                </div>
+                <div class="faq-answer hide">
+                    <p>Yes we do. We accept all types of cards.</p>
+                </div>
+            </div>
+            <div class="faq" data-aos="fade-right" data-aos-duration="800">
+                <h2>How Do You Take Care Of Our Goods?</h2>
+                <div class="faq-icon">
+                    <i class="fa fa-plus" style="font-size:32px"></i>
+                </div>
+                <div class="faq-answer hide">
+                    <p>We have a dedicated cutting edge warehouse where we store your goods until they are shipped.</p>
+                </div>
+            </div>
+            <div class="faq" data-aos="fade-right" data-aos-duration="1200">
+                <h2>Types Of Frieght Transport You <span id="ff">Offer?</span></h2>
+                <div class="faq-icon">
+                    <i class="fa fa-plus" style="font-size:32px"></i>
+                </div>
+                <div class="faq-answer hide">
+                    <p>We can transport your freight by land, air and sea.</p>
+                </div>
+            </div>
+            <div class="faq" data-aos="fade-right" data-aos-duration="1200">
+                <h2>Can Our Goods Being Transferred Be Insured?</h2>
+                <div class="faq-icon">
+                    <i class="fa fa-plus" style="font-size:32px"></i>
+                </div>
+                <div class="faq-answer hide">
+                    <p>Yes. But you have to specially opt for it and additional charges will apply.</p>
+                </div>
+            </div>
+            <div class="faq" data-aos="fade-right" data-aos-duration="1600">
+                <h2>Types Of Trucks You Use?</h2>
+                <div class="faq-icon">
+                    <i class="fa fa-plus" style="font-size:32px"></i>
+                </div>
+                <div class="faq-answer hide">
+                    <p>Tata ACE, Taurus, Eicher, 20 Feet Containers and more.</p>
+                </div>
+            </div>
+            <div class="faq" data-aos="fade-right" data-aos-duration="2000">
+                <h2>Is There Any Advance Payment Involved?</h2>
+                <div class="faq-icon">
+                    <i class="fa fa-plus" style="font-size:32px"></i>
+                </div>
+                <div class="faq-answer hide">
+                    <p>Yes. The amount involved entirely depends on the cargo type and quantity.</p>
+                </div>
+            </div>
+        </div>
+    
+    <div class="contact" id="c">
+        <div class="contactHeader">
+            <h2>CONTACT</h2>
+        </div>
+        <div class="contactBody">
+            <div class="contactAddress" data-aos="fade-right" data-aos-duration="600"">
+                <h3>SSV Transport</h3>
+                <p>123, Thambu Chetty Street</p>
+                <p>Chennai, Tamil Nadu</p>
+                <p>600001</p>
+                <p>Phone: 1234567890</p>
+                <p>Email: ssvtransport@gmail.com</p>
+            </div>
+            <div class="contactMap" data-aos="fade-left" data-aos-duration="600">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.1917619399123!2d80.2853433146465!3d13.087030090780218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f5237d15cd7%3A0xe375cc623de28e42!2sParrys%2C%20George%20Town%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1648620864705!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Made by ABC Designers @ 2022</p>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        AOS.init();
+
+        document.querySelector('.bars').addEventListener('click', function () {
+            document.querySelector('.sidebar').classList.toggle('hide');
+            document.querySelector('.textContent').classList.toggle('hide')
+        })
+
+
+        document.querySelectorAll('.faq-icon').forEach((fi) => {
+            fi.addEventListener('click', function (e) {
+                //alert('hi')
+                console.log(e.target.parentElement.nextElementSibling.classList.toggle('hide'));
+            })
+        })
+        
+    </script>
+</body>
+</html>
